@@ -54,25 +54,19 @@ function QuestionsDashBoard() {
 
       {/* nav tab end  */}
 
-      {userQuestions.length === 0 ? (
-        <p>No Questions Available</p>
-      ) : (
-        activeTab === "Q" &&
-        userQuestions.map((q) => <Question key={q} question={questions[q]} />)
-      )}
-      {userAnswers.length === 0 ? (
-        <p>No Questions Available</p>
-      ) : (
-        activeTab === "A" &&
-        userAnswers.map((q) => (
-          <Question
-            key={q}
-            question={questions[q]}
-            answered
-            currentUser={currentUser}
-          />
-        ))
-      )}
+      {(activeTab === "Q" &&
+        (userQuestions.length === 0 ||
+          userQuestions.map((q) => (
+            <Question key={q} question={questions[q]} />
+          )))) ||
+        (activeTab === "Q" && <p>No Questions Available</p>)}
+
+      {(activeTab === "A" &&
+        (userAnswers.length === 0 ||
+          userAnswers.map((q) => (
+            <Question key={q} question={questions[q]} />
+          )))) ||
+        (activeTab === "A" && <p>No Answers Available</p>)}
     </>
   );
 }
