@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import Login from "./components/login-form";
+import NotFound from "./components/notFound";
+import Home from "./components/home";
+
+import { ToastContainer } from "react-toastify";
+import { intializeData } from "./actions/index";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(intializeData());
+  }, [dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <ToastContainer limit={1} />
+      <Router>
+        <Switch>
+          <Route path="/login" exact>
+            <Login />
+          </Route>
+          <Route path="/add">
+            <Home />
+          </Route>
+          <Route path="/leader-board">
+            <Home />
+          </Route>
+          <Route>
+            <Home path="/product/:id" />
+          </Route>
+          <Route path="/not-found">
+            <NotFound />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Redirect to="/not-found" />
+        </Switch>
+      </Router>
     </div>
   );
 }

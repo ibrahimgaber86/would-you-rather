@@ -1,3 +1,10 @@
+# this is web application for would yoy rather game
+
+you can start use the application after using these order in terminal (npm i && npm start)
+you can login with 3 users you can add question and submit answer and check progress
+from leader board page
+the server in fake so with any refresh you will losse your progress
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
