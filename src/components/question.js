@@ -34,7 +34,7 @@ function Question({ question }) {
 
         <button
           onClick={() => {
-            history.push(`/question/${id}`);
+            history.push(`/questions/${id}`);
           }}
           type="submit"
           className="btn btn-outline-primary w-100 text-uppercase my-3 "

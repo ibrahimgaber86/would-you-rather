@@ -1,25 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Redirect, NavLink } from "react-router-dom";
-import QuestionsDashBoard from "./questions-dashBoard";
+import { NavLink } from "react-router-dom";
 import {
   RiQuestionAnswerFill as Logo,
   RiLogoutBoxLine as LogOut,
 } from "react-icons/ri";
 import { reSetAuthedUser } from "../actions/authedUser";
-import AddQuestion from "./addQuestion";
-import LeaderBoard from "./leaderBoard";
-import QuestionView from "./questionView";
-import Loading from "./loading";
 
 function Home() {
   const currentUser = useSelector((state) => state.users[state.authedUser]);
-  const loading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
-
-  if (!currentUser) {
-    return <Redirect to="/login" />;
-  }
   return (
     <>
       <nav className="navbar navbar-light bg-light">
@@ -33,7 +23,7 @@ function Home() {
           <NavLink className="nav-link" to="/add">
             Add Question
           </NavLink>
-          <NavLink className="nav-link" to="/leader-board">
+          <NavLink className="nav-link" to="/leaderboard">
             Leader Board
           </NavLink>
           <NavLink to="/" className="text-decoration-none">
@@ -58,22 +48,6 @@ function Home() {
           </NavLink>
         </div>
       </nav>
-      {(loading && <Loading />) || (
-        <>
-          <Route exact path="/">
-            <QuestionsDashBoard />
-          </Route>
-          <Route path="/add">
-            <AddQuestion />
-          </Route>
-          <Route path="/leader-board">
-            <LeaderBoard />
-          </Route>
-          <Route path="/question/:id">
-            <QuestionView />
-          </Route>
-        </>
-      )}
     </>
   );
 }

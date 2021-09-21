@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 import { setAuthedUser } from "../actions/authedUser";
-import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [selected, setSelected] = useState(0);
@@ -18,12 +17,10 @@ const Login = () => {
     setSelected(target.value);
   };
 
-  const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selected !== 0) {
       dispatch(setAuthedUser(selected));
-      history.push("/");
     } else {
       toast.clearWaitingQueue();
       toast.warning("Please Choose User");

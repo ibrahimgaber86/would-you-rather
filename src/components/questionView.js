@@ -5,20 +5,28 @@ import { toast } from "react-toastify";
 
 import { handleAddAnswer } from "../actions/questions";
 import QuestionResult from "./questionResult";
+import NotFound from "./notFound";
 
 function QuestionView() {
   const [answer, setAnswer] = useState("");
 
   const authedUser = useSelector((state) => state.authedUser);
-  const { id: qid } = useParams();
+  const { question_id: qid } = useParams();
 
   const question = useSelector((state) => state.questions[qid]);
-  const { author, optionOne, optionTwo } = question;
-  const questionAuthor = useSelector((state) => state.users[author]);
+  let author, optionOne, optionTwo, IsAnswered;
+  if (question) {
+    author = question.author;
+    optionOne = question.optionOne;
+    optionTwo = question.optionTwo;
+    IsAnswered =
+      optionOne.votes.includes(authedUser) ||
+      optionTwo.votes.includes(authedUser);
+  }
 
-  const IsAnswered =
-    optionOne.votes.includes(authedUser) ||
-    optionTwo.votes.includes(authedUser);
+  const questionAuthor = useSelector((state) =>
+    author ? state.users[author] : ""
+  );
 
   const dispatch = useDispatch();
 
@@ -28,6 +36,9 @@ function QuestionView() {
     toast.clearWaitingQueue();
     toast.success("Your Answer Have Been Submitted ");
   };
+
+  if (!question) return <NotFound />;
+
   if (!IsAnswered)
     return (
       <div className="question border border-3 shadow-lg rounded p-5  mt-5 mb-5 bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between">

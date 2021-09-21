@@ -15,7 +15,7 @@ const store = createStore(combineReducers, applyMiddleware(...middleWares));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />,
+    <App />
   </Provider>,
   document.getElementById("root")
 );

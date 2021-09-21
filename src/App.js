@@ -6,7 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Login from "./components/login-form";
 import NotFound from "./components/notFound";
 import Home from "./components/home";
@@ -17,39 +17,41 @@ import { intializeData } from "./actions/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import QuestionsDashBoard from "./components/questions-dashBoard";
+import LeaderBoard from "./components/leaderBoard";
+import QuestionView from "./components/questionView";
+import AddQuestion from "./components/addQuestion";
+import Loading from "./components/loading";
 
 function App() {
+  const authedUser = useSelector((state) => state.authedUser);
+  const loading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(intializeData());
   }, [dispatch]);
+  if (!authedUser)
+    return (
+      <>
+        <ToastContainer limit={1} />
+        <Login />
+      </>
+    );
   return (
-    <div className="App container">
+    <Router>
       <ToastContainer limit={1} />
-      <Router>
+      <Home />
+      {(loading && <Loading />) || (
         <Switch>
-          <Route path="/login" exact>
-            <Login />
-          </Route>
-          <Route path="/add">
-            <Home />
-          </Route>
-          <Route path="/leader-board">
-            <Home />
-          </Route>
-          <Route>
-            <Home path="/product/:id" />
-          </Route>
-          <Route path="/not-found">
-            <NotFound />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Redirect to="/not-found" />
+          <Route exact path="/" component={QuestionsDashBoard} />
+          <Route exact path="/404" component={NotFound} />
+          <Route path="/leaderboard" component={LeaderBoard} />
+          <Route path="/questions/:question_id" component={QuestionView} />
+          <Route path="/add" component={AddQuestion} />
+          <Redirect to="/404" />
         </Switch>
-      </Router>
-    </div>
+      )}
+    </Router>
   );
 }
 
