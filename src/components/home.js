@@ -14,11 +14,16 @@ function Home() {
     <>
       <nav className="navbar navbar-light bg-light">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">
+          <NavLink
+            className="navbar-brand"
+            to="/"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Home"
+            style={{ color: "dodgerblue", fontWeight: 300 }}
+          >
+            Would You Rather&nbsp;
             <Logo style={{ color: "dodgerblue" }} />
-          </NavLink>
-          <NavLink className="nav-link" to="/">
-            Home
           </NavLink>
           <NavLink className="nav-link" to="/add">
             Add Question
