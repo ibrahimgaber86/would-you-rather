@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
+import { motion } from "framer-motion";
+import * as animation from "../animationHelper";
+
 import { handleAddAnswer } from "../actions/questions";
 import QuestionResult from "./questionResult";
 import NotFound from "./notFound";
@@ -41,7 +44,10 @@ function QuestionView() {
 
   if (!IsAnswered)
     return (
-      <div className="question border border-3 shadow-lg rounded p-5  mt-5 mb-5 bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between">
+      <motion.div
+        {...animation}
+        className="question border border-3 shadow-lg rounded p-5  mt-5 mb-5 bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between"
+      >
         <div>
           <img
             className="avatar"
@@ -91,7 +97,7 @@ function QuestionView() {
             submit
           </button>
         </div>
-      </div>
+      </motion.div>
     );
 
   return <QuestionResult question={question} />;

@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
+import * as animation from "../animationHelper";
 
 function Question({ question }) {
   const { author, id, optionOne, timestamp } = question;
@@ -15,7 +17,10 @@ function Question({ question }) {
   }
 
   return (
-    <div className="question border border-3 shadow-lg rounded p-5  bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between">
+    <motion.div
+      {...animation}
+      className="question border border-3 shadow-lg rounded p-5  bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between"
+    >
       <div>
         <img
           className="avatar"
@@ -42,7 +47,7 @@ function Question({ question }) {
           View question
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

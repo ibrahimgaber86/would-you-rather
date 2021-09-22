@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import * as animation from "../animationHelper";
 
 function LeaderBoard() {
   const users = useSelector((state) =>
@@ -14,7 +16,10 @@ function LeaderBoard() {
       .sort((a, b) => b.totalScore - a.totalScore)
   );
   return (
-    <div className="d-flex flex-column align-items-center">
+    <motion.div
+      {...animation}
+      className="d-flex flex-column align-items-center"
+    >
       <h1 className="display-5 text-center">Leader Board</h1>;
       {users.map((u) => (
         <div
@@ -36,7 +41,7 @@ function LeaderBoard() {
           <h3 className="display-6">Toatal: {u.totalScore}</h3>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 

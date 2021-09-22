@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import * as animation from "../animationHelper";
 
 function QuestionResult({ question: { optionOne, optionTwo } }) {
   const optionOneVotes = optionOne.votes.length;
@@ -8,7 +10,10 @@ function QuestionResult({ question: { optionOne, optionTwo } }) {
   const optionTwoPercent = Math.round((optionTwoVotes / totalVotes) * 100);
 
   return (
-    <div className="question border border-3 shadow-lg rounded p-5  mt-5 mb-5 bg-light d-flex flex-column  justify-content-between">
+    <motion.div
+      {...animation}
+      className="question border border-3 shadow-lg rounded p-5  mt-5 mb-5 bg-light d-flex flex-column  justify-content-between"
+    >
       <h3>Question Results</h3>
       <hr className="mb-5 bg-red" />
       <h5>{`${optionOne.text} (${optionOneVotes} votes from ${totalVotes})`}</h5>
@@ -23,7 +28,7 @@ function QuestionResult({ question: { optionOne, optionTwo } }) {
           {optionTwoPercent}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Question from "./question";
-
 function QuestionsDashBoard() {
   const [activeTab, setActiveTab] = useState("Q");
 
