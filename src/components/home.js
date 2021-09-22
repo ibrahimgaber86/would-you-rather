@@ -42,7 +42,7 @@ function Home() {
           <NavLink
             onClick={() => dispatch(reSetAuthedUser())}
             className="nav-link"
-            to="/login"
+            to="/"
           >
             <LogOut style={{ color: "dodgerblue" }} />
           </NavLink>
