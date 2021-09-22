@@ -9,6 +9,9 @@ form,
   cursor: pointer;
 }
 
+.nav-link.active {
+  color: #222;
+}
 .avatar {
   width: 100px;
   border-radius: 50%;

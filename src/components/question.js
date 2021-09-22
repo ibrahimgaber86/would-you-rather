@@ -19,7 +19,7 @@ function Question({ question }) {
   return (
     <motion.div
       {...animation}
-      className="question border border-3 shadow-lg rounded p-5  bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between"
+      className="question border mb-3 border-3 shadow-lg rounded p-5  bg-light d-flex flex-column flex-sm-row align-items-center justify-content-between"
     >
       <div>
         <img

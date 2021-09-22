@@ -12,7 +12,10 @@ function Home() {
   const dispatch = useDispatch();
   return (
     <>
-      <nav className="navbar navbar-light bg-light">
+      <nav
+        className="container navbar navbar-light"
+        style={{ backgroundColor: "#F0F0F0" }}
+      >
         <div className="container-fluid">
           <NavLink
             className="navbar-brand"
